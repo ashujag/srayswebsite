@@ -1,0 +1,117 @@
+.about-us-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px; /* Consistent padding */
+  background-color: var(--white); /* Use white background for this section */
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.about-us-content {
+  max-width: 600px;
+  margin-right: 60px; /* Increased margin for separation */
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInSlideRight 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.about-us-content h2 {
+  font-size: 42px; /* Consistent heading size */
+  color: var(--text-color);
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.about-us-content p {
+  font-size: 18px; /* Consistent paragraph text size */
+  color: var(--secondary-color);
+  line-height: 1.7;
+  margin-bottom: 20px; /* Adjusted margin */
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color); /* Use secondary color for button */
+  color: var(--white);
+  padding: 14px 30px; /* Consistent button padding */
+  border: none;
+  border-radius: 8px; /* Consistent button border-radius */
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Slightly darker gray on hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.about-us-image {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeInSlideLeft 1s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.about-us-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px; /* Consistent image border-radius */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Consistent image shadow */
+}
+
+@keyframes fadeInSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .about-us-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .about-us-content {
+    margin-right: 0;
+    margin-bottom: 40px;
+    text-align: center;
+    transform: translateX(0);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .about-us-image {
+    transform: translateX(0);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.6s;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-us-content h2 {
+    font-size: 34px;
+  }
+
+  .about-us-content p {
+    font-size: 16px;
+  }
+
+  .btn-secondary {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px; /* Adjusted padding for a cleaner look */
+  background-color: var(--white); /* Use white background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  position: sticky; /* Make header sticky */
+  top: 0;
+  z-index: 1000; /* Ensure header stays on top */
+}
+
+.logo span {
+  font-size: 28px; /* Slightly larger font size for logo */
+  font-weight: 700; /* Bolder font weight */
+  color: var(--primary-color); /* Use primary color for logo */
+  letter-spacing: -0.5px; /* Slight letter spacing adjustment */
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px; /* Use gap for spacing between nav items */
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color); /* Use text color for nav links */
+  font-weight: 500;
+  font-size: 17px;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav a:hover {
+  color: var(--primary-color); /* Primary color on hover */
+}

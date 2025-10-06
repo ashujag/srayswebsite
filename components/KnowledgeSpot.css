@@ -1,0 +1,97 @@
+.knowledge-spot-section {
+  padding: 80px 40px; /* Consistent padding */
+  background-color: var(--background-color); /* Use global background color */
+  text-align: center;
+  overflow: hidden;
+}
+
+.knowledge-spot-section h2 {
+  font-size: 42px; /* Consistent heading size */
+  color: var(--text-color);
+  margin-bottom: 15px; /* Adjusted margin */
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.knowledge-spot-section .section-description {
+  font-size: 19px; /* Consistent paragraph text size */
+  color: var(--secondary-color);
+  margin-bottom: 50px; /* Increased margin */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.knowledge-list ul {
+  list-style: none;
+  padding: 0;
+  max-width: 900px; /* Increased max-width */
+  margin: 0 auto;
+}
+
+.knowledge-list li {
+  background-color: var(--white); /* White background for list items */
+  padding: 20px 25px; /* Adjusted padding */
+  margin-bottom: 15px; /* Adjusted margin */
+  border-radius: 10px; /* More rounded corners */
+  text-align: left;
+  font-size: 18px; /* Slightly larger font size */
+  color: var(--text-color);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07); /* Refined shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
+  border: 1px solid var(--light-gray); /* Subtle border */
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInSlideRight 1s ease-out forwards;
+}
+
+.knowledge-list li:nth-child(1) { animation-delay: 0.6s; }
+.knowledge-list li:nth-child(2) { animation-delay: 0.7s; }
+.knowledge-list li:nth-child(3) { animation-delay: 0.8s; }
+
+
+.knowledge-list li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+@keyframes fadeInSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .knowledge-spot-section {
+    padding: 60px 20px;
+  }
+
+  .knowledge-spot-section h2 {
+    font-size: 34px;
+  }
+
+  .knowledge-spot-section .section-description {
+    font-size: 17px;
+  }
+
+  .knowledge-list li {
+    font-size: 16px;
+    padding: 15px 20px;
+  }
+}

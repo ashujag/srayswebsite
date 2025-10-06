@@ -1,0 +1,101 @@
+.contact-us-section {
+  padding: 80px 40px; /* Consistent padding */
+  background-color: var(--background-color); /* Use global background color */
+  text-align: center;
+  overflow: hidden;
+}
+
+.contact-us-section h2 {
+  font-size: 42px; /* Consistent heading size */
+  color: var(--text-color);
+  margin-bottom: 15px; /* Adjusted margin */
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.contact-us-section .section-description {
+  font-size: 19px; /* Consistent paragraph text size */
+  color: var(--secondary-color);
+  margin-bottom: 50px; /* Increased margin */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Consistent gap */
+  max-width: 1200px; /* Increased max-width */
+  margin: 0 auto 50px auto; /* Adjusted margin */
+}
+
+.contact-card {
+  background-color: var(--white); /* White background for cards */
+  padding: 35px; /* Increased padding */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Refined shadow */
+  text-align: center;
+  border: 1px solid var(--light-gray); /* Subtle border */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+.contact-card:nth-child(1) { animation-delay: 0.6s; }
+.contact-card:nth-child(2) { animation-delay: 0.7s; }
+.contact-card:nth-child(3) { animation-delay: 0.8s; }
+
+
+.contact-card h3 {
+  font-size: 24px; /* Larger heading */
+  color: var(--primary-color); /* Use primary color for headings */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.contact-card p {
+  font-size: 17px; /* Slightly larger paragraph text */
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+.contact-us-section .btn-primary {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  animation-delay: 1.0s;
+}
+
+@keyframes fadeInSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-us-section {
+    padding: 60px 20px;
+  }
+
+  .contact-us-section h2 {
+    font-size: 34px;
+  }
+
+  .contact-us-section .section-description {
+    font-size: 17px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

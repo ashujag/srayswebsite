@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+
+/* Global styles for the entire application */
+:root {
+  --primary-color: #007bff; /* Blue for accents, buttons */
+  --secondary-color: #6c757d; /* Gray for secondary text */
+  --text-color: #212529; /* Dark text */
+  --background-color: #f8f9fa; /* Light background */
+  --light-gray: #e9ecef; /* Lighter gray for borders, subtle backgrounds */
+  --white: #ffffff;
+}
+
+/* Universal box-sizing for easier layout management */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* font-family is now handled in App.css */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Basic reset for elements */
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color); /* Links use primary color */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: A container for consistent page width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

@@ -1,0 +1,139 @@
+.newsletter-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px; /* Consistent padding */
+  background-color: var(--background-color); /* Use global background color */
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 60px; /* Increased gap */
+  overflow: hidden;
+}
+
+.newsletter-content {
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInSlideRight 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.newsletter-content h2 {
+  font-size: 42px; /* Consistent heading size */
+  color: var(--text-color);
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.newsletter-content p {
+  font-size: 19px; /* Consistent paragraph text size */
+  color: var(--secondary-color);
+  line-height: 1.7;
+  margin-bottom: 40px; /* Adjusted margin */
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Adjusted gap */
+}
+
+.newsletter-form input {
+  padding: 14px 20px; /* Larger padding */
+  border: 1px solid var(--light-gray); /* Use light gray border */
+  border-radius: 8px; /* More rounded corners */
+  font-size: 17px; /* Slightly larger font size */
+  flex-grow: 1;
+  max-width: 350px; /* Increased max-width */
+  color: var(--text-color);
+  background-color: var(--white);
+}
+
+.newsletter-form input::placeholder {
+  color: var(--secondary-color);
+}
+
+/* Reusing .btn-primary from global styles, no need to redefine here unless specific changes are needed */
+
+.newsletter-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjusted gap */
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeInSlideLeft 1s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.newsletter-images img {
+  max-width: 180px; /* Slightly larger images */
+  height: auto;
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Refined shadow */
+  border: 1px solid var(--light-gray); /* Subtle border */
+}
+
+@keyframes fadeInSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .newsletter-section {
+    flex-direction: column;
+    padding: 60px 20px;
+  }
+
+  .newsletter-content {
+    transform: translateX(0);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .newsletter-images {
+    transform: translateX(0);
+    animation: fadeInSlideUp 1s ease-out forwards;
+    animation-delay: 0.6s;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .newsletter-content h2 {
+    font-size: 34px;
+  }
+
+  .newsletter-content p {
+    font-size: 17px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .newsletter-form input {
+    max-width: 100%;
+  }
+
+  .newsletter-images img {
+    max-width: 120px;
+  }
+}
