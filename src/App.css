@@ -5,6 +5,7 @@
   overflow: hidden; /* Hide overflow from particles */
   font-family: 'Inter', sans-serif; /* Modern sans-serif font */
   color: #333; /* Default text color */
+  padding-top: 80px; /* Add padding to prevent content from overlapping with fixed header */
 }
 
 /* Particles background styling */

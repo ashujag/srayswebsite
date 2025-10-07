@@ -32,6 +32,7 @@ const Clients = () => {
 
   return (
     <motion.section
+      id="clients"
       className="clients-section"
       ref={ref}
       variants={containerVariants}

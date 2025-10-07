@@ -26,6 +26,7 @@ const ContactUs = () => {
 
   return (
     <motion.section
+      id="contact-us"
       className="contact-us-section"
       ref={ref}
       variants={containerVariants}

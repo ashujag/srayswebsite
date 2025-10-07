@@ -50,6 +50,7 @@ const LatestNews = () => {
 
   return (
     <motion.section
+      id="latest-news"
       className="latest-news-section"
       ref={ref}
       variants={containerVariants}

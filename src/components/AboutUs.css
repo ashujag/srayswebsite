@@ -1,117 +1,117 @@
-.about-us-section {
+.aboutus-modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 80px;
+  background-image: url('../assets/Buisness network.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 60vh;
+  border-radius: 0;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.aboutus-content {
+  flex: 1;
+  min-width: 300px;
+  max-width: 550px;
+}
+
+.aboutus-content h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.aboutus-content p {
+  font-size: 17px;
+  color: #4a4a4a;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.modern-btn {
+  background: linear-gradient(90deg, #4f46e5, #6d28d9);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modern-btn:hover {
+  background: linear-gradient(90deg, #6d28d9, #7c3aed);
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
+}
+
+.aboutus-image {
+  flex: 1;
+  min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 40px; /* Consistent padding */
-  background-color: var(--white); /* Use white background for this section */
-  flex-wrap: wrap;
-  overflow: hidden;
 }
 
-.about-us-content {
-  max-width: 600px;
-  margin-right: 60px; /* Increased margin for separation */
-  text-align: left;
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: fadeInSlideRight 1s ease-out forwards;
-  animation-delay: 0.3s;
+.aboutus-image img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.about-us-content h2 {
-  font-size: 42px; /* Consistent heading size */
-  color: var(--text-color);
-  margin-bottom: 25px;
-  font-weight: 700;
+.aboutus-image img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
 }
 
-.about-us-content p {
-  font-size: 18px; /* Consistent paragraph text size */
-  color: var(--secondary-color);
-  line-height: 1.7;
-  margin-bottom: 20px; /* Adjusted margin */
-}
-
-.btn-secondary {
-  background-color: var(--secondary-color); /* Use secondary color for button */
-  color: var(--white);
-  padding: 14px 30px; /* Consistent button padding */
-  border: none;
-  border-radius: 8px; /* Consistent button border-radius */
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 20px;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268; /* Slightly darker gray on hover */
-  transform: translateY(-2px); /* Subtle lift on hover */
-}
-
-.about-us-image {
-  opacity: 0;
-  transform: translateX(20px);
-  animation: fadeInSlideLeft 1s ease-out forwards;
-  animation-delay: 0.6s;
-}
-
-.about-us-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px; /* Consistent image border-radius */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Consistent image shadow */
-}
-
-@keyframes fadeInSlideRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInSlideLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
+/* 🌐 Responsive Design */
 @media (max-width: 992px) {
-  .about-us-section {
-    flex-direction: column;
+  .aboutus-modern {
+    flex-direction: column-reverse;
     text-align: center;
-    padding: 60px 20px;
+    padding: 50px 30px;
+    min-height: 70vh;
   }
 
-  .about-us-content {
-    margin-right: 0;
-    margin-bottom: 40px;
-    text-align: center;
-    transform: translateX(0);
-    animation: fadeInSlideUp 1s ease-out forwards;
-    animation-delay: 0.3s;
+  .aboutus-content {
+    max-width: 100%;
+    margin-top: 30px;
   }
 
-  .about-us-image {
-    transform: translateX(0);
-    animation: fadeInSlideUp 1s ease-out forwards;
-    animation-delay: 0.6s;
+  .aboutus-content h2 {
+    font-size: 34px;
+  }
+
+  .aboutus-content p {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 576px) {
-  .about-us-content h2 {
-    font-size: 34px;
+  .aboutus-modern {
+    padding: 40px 20px;
+    min-height: 65vh;
   }
 
-  .about-us-content p {
-    font-size: 16px;
+  .aboutus-content h2 {
+    font-size: 28px;
   }
 
-  .btn-secondary {
-    padding: 10px 20px;
-    font-size: 16px;
+  .modern-btn {
+    padding: 10px 22px;
+    font-size: 15px;
+  }
+
+  .aboutus-image img {
+    max-width: 340px;
   }
 }

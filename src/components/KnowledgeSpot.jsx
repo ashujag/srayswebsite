@@ -29,6 +29,7 @@ const KnowledgeSpot = () => {
 
   return (
     <motion.section
+      id="knowledge-spot"
       className="knowledge-spot-section"
       ref={ref}
       variants={containerVariants}

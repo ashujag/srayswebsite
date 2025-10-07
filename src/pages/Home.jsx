@@ -13,12 +13,10 @@ import KnowledgeSpot from '../components/KnowledgeSpot.jsx';
 import Newsletter from '../components/Newsletter.jsx';
 import Clients from '../components/Clients.jsx';
 import ContactUs from '../components/ContactUs.jsx';
-import Dynamic3DElement from '../components/Dynamic3DElement.jsx';
 
 const Home = () => {
   return (
     <div>
-      <Dynamic3DElement />
       <Header />
       <HeroSection />
       <VisionMission />

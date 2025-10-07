@@ -1,58 +1,105 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
 import './HeroSection.css';
+import heroImg from '../assets/hero-img.png';
 
 const HeroSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const heroContentRef = useRef(null);
+  const heroImageRef = useRef(null);
+  const headingRef = useRef(null);
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  // Simple entrance animations on mount - text stays visible
+  useEffect(() => {
+    const heading = headingRef.current;
+    const content = heroContentRef.current;
+    const image = heroImageRef.current;
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+    if (heading) {
+      const words = heading.querySelectorAll('span');
+      words.forEach((word, index) => {
+        setTimeout(() => {
+          word.style.opacity = '1';
+          word.style.transform = 'translateY(0)';
+        }, index * 50);
+      });
+    }
+
+    if (content) {
+      setTimeout(() => {
+        const p = content.querySelector('p');
+        const button = content.querySelector('.btn-primary');
+        if (p) {
+          p.style.opacity = '1';
+          p.style.transform = 'translateY(0)';
+        }
+        if (button) {
+          button.style.opacity = '1';
+          button.style.transform = 'scale(1)';
+        }
+      }, 400);
+    }
+
+    if (image) {
+      setTimeout(() => {
+        image.style.opacity = '1';
+        image.style.transform = 'translateX(0) scale(1)';
+      }, 600);
+    }
+  }, []);
+
+  // Split heading into words
+  const headingText = 'Design An Optimal Business Model to reach your IT Services';
+  const words = headingText.split(' ');
 
   return (
-    <motion.section
-      className="hero-section"
-      ref={ref}
-      variants={sectionVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-    >
-      <motion.div className="hero-content" variants={itemVariants}>
-        <h2>Design an optimal business model to reach Your HR Solutions IT Services Designing</h2>
-        <p>The process of business model construction and modification is also called business model innovation.</p>
-        <motion.button
-          className="btn-primary"
-          variants={itemVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
-          whileTap={{ scale: 0.95 }}
-        >
+    <section id="hero-section" className="hero-section" ref={ref}>
+      {/* Animated gradient background */}
+      <div className="hero-gradient-bg"></div>
+
+      {/* Floating particles */}
+      <div className="particles-container">
+        {[...Array(25)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 12}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="hero-content observe-fade" ref={heroContentRef}>
+        <h2 ref={headingRef}>
+          {words.map((word, index) => (
+            <span
+              key={index}
+              className="word-animate"
+            >
+              {word}
+            </span>
+          ))}
+        </h2>
+
+        <p className="paragraph-animate">
+          The process of business model construction and modification is also called business model innovation.
+        </p>
+
+        <button className="btn-primary button-animate">
           Learn More
-        </motion.button>
-      </motion.div>
-      <motion.div
-        className="hero-image"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        <img src="assets/img/icons/hero-img.png" alt="Hero Image" />
-      </motion.div>
-    </motion.section>
+          <span className="button-glow"></span>
+        </button>
+      </div>
+
+      <div className="hero-image observe-fade image-animate" ref={heroImageRef}>
+        <div className="image-wrapper">
+          <img src={heroImg} alt="Hero Image" />
+          <div className="image-overlay"></div>
+        </div>
+      </div>
+    </section>
   );
 };
 

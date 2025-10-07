@@ -1,21 +1,17 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import './AboutUs.css';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import "./AboutUs.css";
 
 const AboutUs = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        staggerChildren: 0.2,
-      },
+      transition: { duration: 0.8, staggerChildren: 0.2 },
     },
   };
 
@@ -26,32 +22,43 @@ const AboutUs = () => {
 
   return (
     <motion.section
-      className="about-us-section"
+      id="about-us"
+      className="aboutus-modern"
       ref={ref}
-      variants={sectionVariants}
+      variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <motion.div className="about-us-content" variants={itemVariants}>
+      <motion.div className="aboutus-content" variants={itemVariants}>
         <h2>About Us</h2>
-        <p>"SRays" is an HR outsourcing firm incorporated by skilled and proficient wizards in the field of Human Resources aiming to Virtualize the HR Process. We have professionals who are actively exercising Human Resources practices in the Industry, by providing up-to-date sophisticated HR solutions and HRMS (Human Resource Management System) software, IT services to start ups, SMEs, Family Based businesses and Corporates.</p>
-        <p>As a contribution towards Students community, we are conducting some HR Skill Development Programs for helping them to Up-Skill their knowledge towards the Industrial requirements. Also we conduct Technical Skill Development Programs for HR Professionals and Entrepreneurs.</p>
+        <p>
+          <strong>SRays</strong> is an HR outsourcing firm established by
+          proficient experts in Human Resources. Our goal is to virtualize the
+          HR process, providing sophisticated HR solutions and HRMS software to
+          startups, SMEs, and corporates.
+        </p>
+        <p>
+          We also conduct{" "}
+          <strong>HR & Technical Skill Development Programs</strong> for
+          students and professionals to upskill and adapt to modern industry
+          requirements.
+        </p>
+
         <motion.button
-          className="btn-secondary"
-          variants={itemVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)" }}
+          className="modern-btn"
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Why Us!
+          Why Us?
         </motion.button>
       </motion.div>
+
       <motion.div
-        className="about-us-image"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        className="aboutus-image"
+        variants={itemVariants}
+        whileHover={{ scale: 1.03 }}
       >
-        <img src="assets/img/aboutus_bg.png" alt="About Us Background" />
+        <img src="aboutus_bg.png" alt="About Us" />
       </motion.div>
     </motion.section>
   );
