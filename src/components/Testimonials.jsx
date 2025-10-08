@@ -54,19 +54,22 @@ const Testimonials = () => {
     >
       <motion.h2 variants={itemVariants}>Endorsement of our Success</motion.h2>
       <motion.p className="section-description" variants={itemVariants}>We don`t write stories, but imprint out Success - Success Stories more to come.</motion.p>
-      <motion.div className="testimonials-grid" variants={containerVariants}>
-        {testimonials.map((testimonial) => (
-          <motion.div
-            className="testimonial-card"
-            key={testimonial.id}
-            variants={itemVariants}
-            whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(0, 0, 0, 0.15)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img src={testimonial.image} alt={testimonial.alt} />
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="testimonials-carousel-container">
+        <div className="testimonials-carousel">
+          {testimonials.map((testimonial, index) => (
+            <div
+              className="testimonial-card"
+              key={testimonial.id}
+              style={{ '--i': index }}
+            >
+              <img src={testimonial.image} alt={testimonial.alt} />
+              <div className="testimonial-content">
+                {/* Quote and Name will be added here if user clarifies how to handle text content */}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </motion.section>
   );
 };

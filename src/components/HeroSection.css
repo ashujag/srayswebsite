@@ -1,53 +1,59 @@
 /* ==========================================
-   HERO SECTION - PREMIUM IT COMPANY LANDING
+   HERO SECTION - AMBIENT DARK THEME UPGRADE
    ========================================== */
+:root {
+  --primary-bg: #060C14; /* Deep, dark background */
+  --text-color: #E0E7FF; /* Light, readable text */
+  --accent-cyan: #00F0FF; /* Bright neon accent */
+  --accent-blue: #034078; /* Mid-tone blue */
+}
+
 .hero-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 8%;
+  padding: 80px 8% 0; /* Add top padding to move content down uniformly */
   position: relative;
   z-index: 1;
   overflow: hidden;
   min-height: 100vh;
   width: 100%;
+  background-color: var(--primary-bg);
 }
 
 /* ==========================================
-   PROFESSIONAL IT GRADIENT BACKGROUND
-   Modern Tech Colors: Deep Blue, Cyan, Purple
+   AMBIENT BACKGROUND STYLING (FADED IMAGE)
    ========================================== */
-.hero-gradient-bg {
-  content: "";
+.hero-ambient-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(
-    135deg,
-    #0a1128 0%,
-    #001f54 20%,
-    #034078 40%,
-    #1282a2 60%,
-    #0a1128 100%
-  );
-  background-size: 400% 400%;
-  opacity: 1;
-  animation: gradientFlow 25s ease-in-out infinite;
-  will-change: background-position;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-/* Smooth gradient animation */
-@keyframes gradientFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+.hero-ambient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/cropped-image-businessman-fixing-tie-isolated-grey.jpg'); /* USE YOUR IMAGE PATH HERE */
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed; /* Parallax effect */
+  opacity: 0.15;
+  filter: blur(5px) saturate(1.5);
+  /* Adjusted mask to ensure background text doesn't clash too much */
+  mask-image: linear-gradient(to right, transparent 0%, black 50%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%, black 100%);
+  transition: opacity 1s ease;
+}
+
+.hero-gradient-bg {
+    display: none;
 }
 
 /* ==========================================
-   TECH-THEMED FLOATING PARTICLES
+   TECH-THEMED FLOATING PARTICLES (KEPT)
    ========================================== */
 .particles-container {
   position: absolute;
@@ -61,530 +67,148 @@
   position: absolute;
   width: 3px;
   height: 3px;
-  background: rgba(18, 130, 162, 0.9);
+  background: rgba(0, 240, 255, 0.9);
   border-radius: 50%;
   animation: float linear infinite;
-  box-shadow: 0 0 15px rgba(18, 130, 162, 0.8),
-              0 0 30px rgba(3, 64, 120, 0.4);
+  box-shadow: 0 0 15px var(--accent-cyan), 
+              0 0 30px var(--accent-blue);
   will-change: transform, opacity;
 }
 
-/* Elegant floating animation */
 @keyframes float {
-  0% {
-    transform: translateY(100vh) translateX(0) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(50vh) translateX(20px) scale(1);
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) translateX(-20px) scale(0);
-    opacity: 0;
-  }
-}
-
-/* ==========================================
-   INTERSECTION OBSERVER FADE EFFECTS
-   ========================================== */
-.observe-fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.observe-fade.in-view {
-  opacity: 1;
-  transform: translateY(0);
+  0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateY(50vh) translateX(20px) scale(1); }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) translateX(-20px) scale(0); opacity: 0; }
 }
 
 /* ==========================================
    HERO CONTENT SECTION - LEFT ALIGNED
-   Content stays visible and prominent
    ========================================== */
 .hero-content {
-  max-width: 650px;
+  max-width: 480px; /* Reduce max-width so text wraps before image */
+  margin: 0 60px 0 0; /* Add right margin to separate from image card */
   position: relative;
-  z-index: 2;
-  padding-right: 40px;
+  z-index: 3;
+  padding-right: 0; /* Remove extra padding if present */
   perspective: 1000px;
   transform-style: preserve-3d;
-  /* Lock content visibility */
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
+  flex-shrink: 0;
+  transform: translateY(-160px); /* Move text further up */
 }
 
-/* Main Heading - Large and Bold - ALWAYS VISIBLE */
 .hero-content h2 {
   font-size: 64px;
-  color: #ffffff;
+  color: var(--text-color);
   margin-bottom: 30px;
   line-height: 1.15;
   font-weight: 900;
   position: relative;
-  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8),
-               0 2px 10px rgba(18, 130, 162, 0.6),
-               0 0 40px rgba(18, 130, 162, 0.4);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.2); 
   letter-spacing: -1.5px;
-  /* Ensure text stays visible */
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
-/* Word-by-word animation effect - Enhanced visibility */
-.hero-content h2 span {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  display: inline-block;
-  will-change: transform;
-  margin-right: 0.35em;
-  /* Keep words always visible */
-  opacity: 1 !important;
-}
-
-/* Initial state for word animation */
-.word-animate {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.hero-content h2 span { /* Added transition for individual word animation */
+    transition: all 0.3s ease-in-out; 
 }
 
 .hero-content h2 span:hover {
-  color: #1282a2;
+  color: var(--accent-cyan);
   transform: translateY(-3px) scale(1.05) !important;
-  text-shadow: 0 0 30px rgba(18, 130, 162, 1),
-               0 0 50px rgba(3, 64, 120, 0.8),
-               0 5px 20px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0 30px var(--accent-cyan), 
+               0 0 50px var(--accent-blue);
 }
 
-/* Paragraph - Clear and Readable - ALWAYS VISIBLE */
 .hero-content p {
   font-size: 22px;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 45px;
   line-height: 1.7;
-  position: relative;
-  font-weight: 400;
-  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7),
-               0 0 20px rgba(18, 130, 162, 0.3);
-  max-width: 600px;
-  /* Ensure paragraph stays visible */
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Initial state for paragraph animation */
-.paragraph-animate {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* ==========================================
-   PROFESSIONAL IT CALL-TO-ACTION BUTTON
-   Enhanced visibility and prominence
-   ========================================== */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1282a2, #0582ca);
-  color: #ffffff;
-  padding: 18px 45px;
-  border: none;
-  border-radius: 50px;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 40px rgba(18, 130, 162, 0.5),
-              0 5px 15px rgba(3, 64, 120, 0.4),
-              0 0 30px rgba(18, 130, 162, 0.3);
-  will-change: transform, box-shadow;
-  z-index: 1;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 2px solid transparent;
-  /* Button always visible */
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Initial state for button animation */
-.button-animate {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* Ripple effect background */
-.btn-primary::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #034078, #001f54);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-  z-index: -1;
-}
-
-.btn-primary:hover::before {
-  width: 400px;
-  height: 400px;
-}
-
-.btn-primary:hover {
-  color: #ffffff;
-  transform: translateY(-4px) scale(1.05) !important;
-  box-shadow: 0 15px 50px rgba(18, 130, 162, 0.6),
-              0 10px 30px rgba(3, 64, 120, 0.4),
-              0 0 60px rgba(18, 130, 162, 0.3);
-  border-color: rgba(18, 130, 162, 0.5);
-}
-
-.btn-primary:active {
-  transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 8px 25px rgba(18, 130, 162, 0.5);
-}
-
-/* Animated shine effect */
-.button-glow {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  animation: buttonShine 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes buttonShine {
-  0% {
-    left: -100%;
-  }
-  50%, 100% {
-    left: 100%;
-  }
-}
-
-/* ==========================================
-   HERO IMAGE - RIGHT ALIGNED
+   UPGRADED PROFESSIONAL IMAGE CARD
    ========================================== */
 .hero-image {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   will-change: transform, opacity;
   flex-shrink: 0;
-  max-width: 550px;
+  width: 400px; 
+  height: 500px;
+  margin-top: 80px; /* Move image card further down */
+  /* FIX: Shift image slightly to the right to create more room */
+  transform: translateX(50px); 
 }
 
-/* Initial state for image animation */
-.image-animate {
-  opacity: 0;
-  transform: translateX(30px) scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-/* Image wrapper with tech styling */
 .image-wrapper {
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5),
-              0 15px 50px rgba(18, 130, 162, 0.4);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden; /* Crucial for clipping the image and the mask */
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-  background: rgba(18, 130, 162, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(18, 130, 162, 0.2);
+  background: var(--primary-bg); 
+  border: 1px solid var(--accent-blue);
+  box-shadow: 0 0 30px var(--accent-cyan), 
+              0 0 80px var(--accent-blue), 
+              0 25px 50px rgba(0, 0, 0, 0.8); 
 }
 
-.image-wrapper:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 40px 110px rgba(0, 0, 0, 0.6),
-              0 20px 60px rgba(18, 130, 162, 0.5);
-  border-color: rgba(18, 130, 162, 0.4);
-}
-
-/* Image with smooth zoom */
 .hero-image img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; 
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
+  /* The image itself is now the subject of the mask */
+  -webkit-mask-image: none; /* Reset if any previous mask was applied */
+  mask-image: none;
 }
 
-.image-wrapper:hover img {
-  transform: scale(1.08);
+/* NEW: Image Fade from Right Bottom Corner + UHD at Top */
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit; /* Inherit the image-wrapper's background */
+  border-radius: inherit;
+  /* Mask the image using a gradient: transparent at top-left, opaque at bottom-right */
+  -webkit-mask-image: linear-gradient(
+    to bottom right,
+    rgba(0,0,0,1) 0%, /* Top-left corner is fully visible */
+    rgba(0,0,0,1) 50%, /* Middle is fully visible */
+    rgba(0,0,0,0) 100% /* Bottom-right corner fades to transparent */
+  );
+  mask-image: linear-gradient(
+    to bottom right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 50%,
+    rgba(0,0,0,0) 100%
+  );
+  /* Set the actual image as the background of this pseudo-element */
+  background-image: url('../assets/cropped-image-businessman-fixing-tie-isolated-grey.jpg'); /* USE YOUR IMAGE PATH HERE */
+  background-size: cover;
+  background-position: center center;
+  z-index: 1; /* Place it above the main img element if img has an overlay */
 }
 
-/* Tech-themed gradient overlay */
+/* The existing overlay now applies over the masked image */
 .image-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    135deg,
-    rgba(0, 31, 84, 0.2),
-    rgba(18, 130, 162, 0.15),
-    rgba(3, 64, 120, 0.2)
+    180deg,
+    rgba(3, 64, 120, 0.5),
+    rgba(0, 240, 255, 0.3)
   );
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-.image-wrapper:hover .image-overlay {
   opacity: 1;
+  mix-blend-mode: overlay; /* Blends nicely with the masked image */
+  z-index: 2; /* Ensure overlay is above the masked image */
 }
 
-/* Elegant shimmer effect */
-.image-wrapper::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(18, 130, 162, 0.3) 50%,
-    transparent 70%
-  );
-  transform: rotate(45deg);
-  animation: shimmerSweep 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes shimmerSweep {
-  0% {
-    transform: rotate(45deg) translateX(-100%);
-  }
-  100% {
-    transform: rotate(45deg) translateX(100%);
-  }
-}
-
-/* Tech-themed glow border */
-.image-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  background: linear-gradient(
-    45deg,
-    #001f54,
-    #034078,
-    #1282a2,
-    #034078,
-    #001f54
-  );
-  background-size: 300% 300%;
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: -1;
-  filter: blur(15px);
-  animation: gradientRotate 8s ease infinite;
-}
-
-@keyframes gradientRotate {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.image-wrapper:hover::before {
-  opacity: 0.8;
-}
-
-/* ==========================================
-   RESPONSIVE DESIGN - MOBILE OPTIMIZED
-   ========================================== */
-@media (max-width: 1200px) {
-  .hero-section {
-    padding: 0 5%;
-  }
-
-  .hero-content {
-    max-width: 550px;
-  }
-
-  .hero-content h2 {
-    font-size: 54px;
-  }
-
-  .hero-image {
-    max-width: 480px;
-  }
-}
-
-@media (max-width: 992px) {
-  .hero-section {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 5%;
-    gap: 60px;
-  }
-
-  .hero-content {
-    margin: 0;
-    padding-right: 0;
-    max-width: 100%;
-  }
-
-  .hero-content h2 {
-    font-size: 48px;
-  }
-
-  .hero-content p {
-    max-width: 100%;
-  }
-
-  .hero-image {
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 60px 4%;
-    gap: 40px;
-  }
-
-  .hero-content h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-  }
-
-  .hero-content p {
-    font-size: 19px;
-    margin-bottom: 35px;
-  }
-
-  .btn-primary {
-    padding: 15px 35px;
-    font-size: 16px;
-  }
-
-  .hero-image {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-section {
-    padding: 50px 5%;
-    gap: 30px;
-    min-height: 90vh;
-  }
-
-  .hero-content h2 {
-    font-size: 32px;
-    letter-spacing: -0.5px;
-    margin-bottom: 15px;
-  }
-
-  .hero-content h2 span {
-    margin-right: 0.2em;
-  }
-
-  .hero-content p {
-    font-size: 17px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-
-  .btn-primary {
-    padding: 14px 30px;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-  }
-
-  .particle {
-    width: 2px;
-    height: 2px;
-  }
-
-  .image-wrapper {
-    border-radius: 15px;
-  }
-
-  .hero-image img {
-    border-radius: 15px;
-  }
-}
-
-/* ==========================================
-   ACCESSIBILITY & PERFORMANCE
-   ========================================== */
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .particle {
-    display: none;
-  }
-  
-  .hero-gradient-bg {
-    animation: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .hero-content h2 {
-    text-shadow: none;
-  }
-  
-  .btn-primary {
-    border: 3px solid currentColor;
-  }
-  
-  .hero-gradient-bg {
-    opacity: 0.8;
-  }
-}
-
-/* Dark mode optimization */
-@media (prefers-color-scheme: dark) {
-  .btn-primary {
-    box-shadow: 0 10px 40px rgba(18, 130, 162, 0.5),
-                0 5px 15px rgba(3, 64, 120, 0.4);
-  }
-  
-  .image-wrapper {
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7),
-                0 15px 50px rgba(18, 130, 162, 0.5);
-  }
+/* Hide the direct img tag, as the ::before pseudo-element now renders the image with the mask */
+.hero-image img {
+  display: none; 
 }
