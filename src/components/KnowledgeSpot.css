@@ -1,82 +1,78 @@
+:root {
+  --primary-dark: #002b5b;       /* Deep dark blue background */
+  --primary-light: #0078d7;      /* Accent blue */
+  --text-white: #ffffff;
+  --text-gray: #cfd8dc;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+}
+
+/* ==============================
+   SECTION STYLING
+============================== */
 .knowledge-spot-section {
-  padding: 80px 40px; /* Consistent padding */
-  background-color: var(--background-color); /* Use global background color */
+  padding: 90px 40px;
+  background-color: var(--primary-dark);
+  color: var(--text-white);
   text-align: center;
   overflow: hidden;
 }
 
 .knowledge-spot-section h2 {
-  font-size: 42px; /* Consistent heading size */
-  color: var(--text-color);
-  margin-bottom: 15px; /* Adjusted margin */
+  font-size: 42px;
   font-weight: 700;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  animation-delay: 0.2s;
+  margin-bottom: 15px;
+  color: var(--text-white);
 }
 
 .knowledge-spot-section .section-description {
-  font-size: 19px; /* Consistent paragraph text size */
-  color: var(--secondary-color);
-  margin-bottom: 50px; /* Increased margin */
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 18px;
+  color: var(--text-gray);
+  max-width: 850px;
+  margin: 0 auto 60px;
   line-height: 1.7;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  animation-delay: 0.4s;
 }
 
+/* ==============================
+   KNOWLEDGE LIST
+============================== */
 .knowledge-list ul {
   list-style: none;
   padding: 0;
-  max-width: 900px; /* Increased max-width */
   margin: 0 auto;
+  max-width: 900px;
 }
 
 .knowledge-list li {
-  background-color: var(--white); /* White background for list items */
-  padding: 20px 25px; /* Adjusted padding */
-  margin-bottom: 15px; /* Adjusted margin */
-  border-radius: 10px; /* More rounded corners */
+  background-color: var(--card-bg);
+  color: #111;
+  font-size: 18px;
+  padding: 22px 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
   text-align: left;
-  font-size: 18px; /* Slightly larger font size */
-  color: var(--text-color);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07); /* Refined shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
-  border: 1px solid var(--light-gray); /* Subtle border */
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: fadeInSlideRight 1s ease-out forwards;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
-.knowledge-list li:nth-child(1) { animation-delay: 0.6s; }
-.knowledge-list li:nth-child(2) { animation-delay: 0.7s; }
-.knowledge-list li:nth-child(3) { animation-delay: 0.8s; }
-
 
 .knowledge-list li:hover {
   transform: translateX(10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary-light);
 }
 
-@keyframes fadeInSlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.bullet-icon {
+  font-size: 22px;
+  color: var(--primary-light);
 }
 
-@keyframes fadeInSlideRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
 @media (max-width: 768px) {
   .knowledge-spot-section {
     padding: 60px 20px;
@@ -86,12 +82,12 @@
     font-size: 34px;
   }
 
-  .knowledge-spot-section .section-description {
+  .section-description {
     font-size: 17px;
   }
 
   .knowledge-list li {
     font-size: 16px;
-    padding: 15px 20px;
+    padding: 18px 20px;
   }
 }

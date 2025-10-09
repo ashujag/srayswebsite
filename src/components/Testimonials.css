@@ -8,13 +8,21 @@
 
 .testimonials-section h2 {
   font-size: 42px;
-  color: var(--text-color);
+  color: #211f1f; /* White color */
   margin-bottom: 15px;
   font-weight: 700;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInSlideUp 1s ease-out forwards;
   animation-delay: 0.2s;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.testimonials-section h2:hover {
+  color: #00F0FF; /* Bright neon cyan */
+  text-shadow: 0 0 30px #024d52, /* Neon glow */
+               0 0 50px #034078; /* Deeper blue glow */
+  transform: translateY(-3px) scale(1.05); /* Slight lift and scale on hover */
 }
 
 .testimonials-section .section-description {

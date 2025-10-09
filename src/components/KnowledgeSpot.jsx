@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import './KnowledgeSpot.css';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import "./KnowledgeSpot.css";
 
 const knowledgeItems = [
-  'Building & Sustaining a career in HR',
-  'Recruitment Trends & Challenges',
-  'Pep Talk Series on Talent Development & Retention Stratergy',
+  "Building & Sustaining a Career in HR",
+  "Recruitment Trends & Challenges",
+  "Pep Talk Series on Talent Development & Retention Strategy",
 ];
 
 const KnowledgeSpot = () => {
@@ -16,14 +16,12 @@ const KnowledgeSpot = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -37,7 +35,11 @@ const KnowledgeSpot = () => {
       animate={isInView ? "visible" : "hidden"}
     >
       <motion.h2 variants={itemVariants}>Knowledge Spot</motion.h2>
-      <motion.p className="section-description" variants={itemVariants}>News websites and blogs are common sources for web feeds, but feeds are also used to deliver structured</motion.p>
+      <motion.p className="section-description" variants={itemVariants}>
+        Explore our insights, HR strategies, and professional discussions that
+        empower organizations and individuals to grow smarter.
+      </motion.p>
+
       <motion.div className="knowledge-list" variants={containerVariants}>
         <ul>
           {knowledgeItems.map((item, index) => (
@@ -45,8 +47,9 @@ const KnowledgeSpot = () => {
               key={index}
               variants={itemVariants}
               whileHover={{ x: 10 }}
+              whileTap={{ scale: 0.98 }}
             >
-              {item}
+              <span className="bullet-icon">📘</span> {item}
             </motion.li>
           ))}
         </ul>

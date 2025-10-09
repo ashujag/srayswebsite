@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 40px;
-  background: url("../assets/bg-wave.png") no-repeat center center/cover;
+  min-height: 100vh;
+  padding: 80px 40px;
+  background-color: #1a1a2e; /* Dark professional background */
   color: #ffffff;
   text-align: left;
   flex-wrap: wrap;
@@ -12,32 +13,27 @@
   position: relative;
 }
 
-.cta-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 40, 0.8);
-  z-index: 0;
-}
-
 .cta-content {
   max-width: 600px;
   position: relative;
   z-index: 1;
 }
 
-.cta-content h2 {
-  font-size: 42px;
+.cta-content .headline {
+  font-size: 4.5rem; /* Large headline size */
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #007bff, #ff007b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.cta-content p {
-  font-size: 18px;
+.cta-content .description {
+  font-size: 1.5rem; /* Large description size */
   color: #d7e3ff;
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 40px;
 }
 
@@ -59,39 +55,94 @@
   transform: translateY(-3px);
 }
 
-.cta-image {
+.image-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Gentle overlap */
   position: relative;
   z-index: 1;
-}
-
-.cta-image img {
-  max-width: 520px;
   width: 100%;
-  border-radius: 14px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  max-width: 400px;
 }
 
-.cta-image img:hover {
-  transform: scale(1.03);
+.image-block {
+  position: relative;
+  width: 100%;
+  border-radius: 15px; /* Rounded corners */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Soft shadow */
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-block img {
+  width: 100%;
+  height: 220px; /* Fixed height for images */
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.image-block::before {
+  content: "";
+  position: absolute;
+  inset: -2px; /* Slightly larger to create glow effect */
+  border-radius: 17px; /* Match image block + inset */
+  background: linear-gradient(
+    45deg,
+    rgba(0, 123, 255, 0.6),
+    rgba(255, 0, 123, 0.6)
+  ); /* Blue and pink gradient glow */
+  z-index: -1;
+  filter: blur(10px); /* Soft blur for glow */
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-block:hover::before {
+  opacity: 1;
+}
+
+.offset-left {
+  transform: translateX(-15px); /* Offset left */
+}
+
+.offset-right {
+  transform: translateX(15px); /* Offset right */
+}
+
+/* Adjusting overlap for the middle image to create ladder effect */
+.image-gallery .image-block:nth-child(2) {
+  margin-top: -15px; /* Overlap with previous image */
+  margin-bottom: -15px; /* Overlap with next image */
 }
 
 @media (max-width: 992px) {
   .cta-section {
     flex-direction: column;
     text-align: center;
+    padding: 60px 20px;
   }
 
-  .cta-content h2 {
-    font-size: 36px;
+  .cta-content .headline {
+    font-size: 3.5rem;
   }
 
-  .cta-content p {
-    font-size: 17px;
+  .cta-content .description {
+    font-size: 1.2rem;
   }
 
-  .cta-image {
+  .image-gallery {
     margin-top: 40px;
+    max-width: 100%;
+  }
+
+  .offset-left,
+  .offset-right {
+    transform: translateX(0);
+  }
+
+  .image-gallery .image-block:nth-child(2) {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 }

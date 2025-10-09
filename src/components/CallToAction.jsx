@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./CallToAction.css";
-import ctaImage from "../assets/cta-hr-team.jpg"; // ✅ same real HR photo
+import ctaHrTeam from "../assets/cta-hr-team.jpg";
+import maleSupervisor from "../assets/male-supervisor-training-latin-executive-call-center-manager-explaining-work-stuff-employees-offering-tech-support-customer-service.jpg";
+import smileyBusinesswoman from "../assets/smiley-businesswoman-holding-pointing-smartphone.jpg";
 
 const CallToAction = () => {
   const ref = useRef(null);
@@ -30,8 +32,8 @@ const CallToAction = () => {
       animate={isInView ? "visible" : "hidden"}
     >
       <motion.div className="cta-content" variants={itemVariants}>
-        <h2>Get Improve In Your HR Process</h2>
-        <p>
+        <h1 className="headline">Get Improve In Your HR Process</h1>
+        <p className="description">
           This HR software makes day-to-day employee activities and complex HR
           data easy to manage through our user-friendly HRMS platform.
         </p>
@@ -48,14 +50,17 @@ const CallToAction = () => {
         </motion.button>
       </motion.div>
 
-      <motion.div
-        className="cta-image"
-        initial={{ opacity: 0, x: 50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.5 }}
-      >
-        <img src={ctaImage} alt="HR Team Collaboration" />
-      </motion.div>
+      <div className="image-gallery">
+        <div className="image-block offset-left">
+          <img src={ctaHrTeam} alt="HR Team" />
+        </div>
+        <div className="image-block offset-right">
+          <img src={maleSupervisor} alt="Male Supervisor Training" />
+        </div>
+        <div className="image-block offset-left">
+          <img src={smileyBusinesswoman} alt="Smiley Businesswoman" />
+        </div>
+      </div>
     </motion.section>
   );
 };

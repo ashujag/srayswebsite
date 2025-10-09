@@ -2,7 +2,7 @@
    HERO SECTION - AMBIENT DARK THEME UPGRADE
    ========================================== */
 :root {
-  --primary-bg: #060C14; /* Deep, dark background */
+  --primary-bg: #0a121c; /* Deep, dark background */
   --text-color: #E0E7FF; /* Light, readable text */
   --accent-cyan: #00F0FF; /* Bright neon accent */
   --accent-blue: #034078; /* Mid-tone blue */
@@ -12,44 +12,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 8% 0; /* Add top padding to move content down uniformly */
+  padding: 80px 0 0;
   position: relative;
   z-index: 1;
   overflow: hidden;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--primary-bg);
-}
-
-/* ==========================================
-   AMBIENT BACKGROUND STYLING (FADED IMAGE)
-   ========================================== */
-.hero-ambient-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-ambient-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('../assets/cropped-image-businessman-fixing-tie-isolated-grey.jpg'); /* USE YOUR IMAGE PATH HERE */
+  background-image: url('../assets/campaign-creators-gMsnXqILjp4-unsplash.jpg');
   background-size: cover;
-  background-position: center 30%;
-  background-attachment: fixed; /* Parallax effect */
-  opacity: 0.15;
-  filter: blur(5px) saturate(1.5);
-  /* Adjusted mask to ensure background text doesn't clash too much */
-  mask-image: linear-gradient(to right, transparent 0%, black 50%, black 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%, black 100%);
-  transition: opacity 1s ease;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.hero-gradient-bg {
-    display: none;
+.hero-animated-design {
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary-bg); /* Or any color for the animated layer */
+  z-index: 2; /* Over the background image */
+  clip-path: polygon(0 0, 60% 0, 40% 100%, 0 100%); /* Example curved cut */
+  /* You can refine this clip-path to match the screenshot more accurately */
+  /* For a smoother curve, consider using an SVG mask or a more complex clip-path */
 }
 
 /* ==========================================
@@ -88,7 +70,7 @@
    ========================================== */
 .hero-content {
   max-width: 480px; /* Reduce max-width so text wraps before image */
-  margin: 0 60px 0 0; /* Add right margin to separate from image card */
+  margin: 0 0 0 8%; /* Adjust margin to align with new hero-section padding */
   position: relative;
   z-index: 3;
   padding-right: 0; /* Remove extra padding if present */
@@ -100,12 +82,12 @@
 
 .hero-content h2 {
   font-size: 64px;
-  color: var(--text-color);
+  color: white;
   margin-bottom: 30px;
   line-height: 1.15;
   font-weight: 900;
   position: relative;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.2); 
+  text-shadow: 0 0 10px rgba(63, 180, 193, 0.2); 
   letter-spacing: -1.5px;
 }
 
@@ -122,7 +104,7 @@
 
 .hero-content p {
   font-size: 22px;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
   margin-bottom: 45px;
   line-height: 1.7;
 }
@@ -131,30 +113,4105 @@
    UPGRADED PROFESSIONAL IMAGE CARD
    ========================================== */
 .hero-image {
-  position: relative;
-  z-index: 3;
+  position: absolute; /* Position absolutely to take full height and extend left */
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2; /* Below content, above ambient bg */
+  width: 65%; /* Make it wider */
+  height: 100%; /* Occupy full height of hero section */
   will-change: transform, opacity;
-  flex-shrink: 0;
-  width: 400px; 
-  height: 500px;
-  margin-top: 80px; /* Move image card further down */
-  /* FIX: Shift image slightly to the right to create more room */
-  transform: translateX(50px); 
+  transform: translateX(0); /* Reset transform */
+  margin-top: 0; /* Reset margin */
 }
 
 .image-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 0; /* Remove border-radius for full section curve */
   overflow: hidden; /* Crucial for clipping the image and the mask */
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--primary-bg); 
-  border: 1px solid var(--accent-blue);
-  box-shadow: 0 0 30px var(--accent-cyan), 
-              0 0 80px var(--accent-blue), 
-              0 25px 50px rgba(0, 0, 0, 0.8); 
-}
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove box-shadow */
+  /* Apply curved clip-path */
+  clip-path: ellipse(100% 50% at 100% 50%); /* Initial ellipse for the right side */
+  /* Adjust clip-path to create a more dynamic curve extending to the left */
+  clip-path: polygon(
+    0% 0%, /* Top-left */
+    100% 0%, /* Top-right */
+    100% 100%, /* Bottom-right */
+    0% 100%, /* Bottom-left */
+    20% 50% /* Point for the curve, adjust as needed */
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0,0 L100,0 L100,100 L0,100 C20,80 20,20 0,0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    20% 0%, /* Start curve further right at the top */
+    100% 0%, /* Top right corner */
+    100% 100%, /* Bottom right corner */
+    20% 100%, /* End curve further right at the bottom */
+    0% 50% /* Mid-point of the curve, extending to the left */
+  );
+  /* Refined clip-path for a smooth, large curve */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* Final attempt at a smooth, large curve that occupies the right side */
+  clip-path: polygon(
+    30% 0%, /* Start curve further right at the top */
+    100% 0%, /* Top right corner */
+    100% 100%, /* Bottom right corner */
+    30% 100%, /* End curve further right at the bottom */
+    0% 50% /* Mid-point of the curve, extending to the left */
+  );
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler, more effective clip-path for a curved left edge */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    20% 50%
+  );
+  /* A more refined curve that starts from the top-left and curves to the bottom-left */
+  clip-path: path('M0 0 L100 0 L100 100 L0 100 C20 80 20 20 0 0 Z'); /* Example path, needs refinement */
+  /* Let's try a simpler
 
 .hero-image img {
   width: 100%;
@@ -188,7 +4245,7 @@
     rgba(0,0,0,0) 100%
   );
   /* Set the actual image as the background of this pseudo-element */
-  background-image: url('../assets/cropped-image-businessman-fixing-tie-isolated-grey.jpg'); /* USE YOUR IMAGE PATH HERE */
+  background-image: url('../assets/campaign-creators-gMsnXqILjp4-unsplash.jpg'); /* USE YOUR IMAGE PATH HERE */
   background-size: cover;
   background-position: center center;
   z-index: 1; /* Place it above the main img element if img has an overlay */

@@ -1,262 +1,211 @@
 /* ==========================================
-   BUSINESS SERVICES - INNOVATIVE LAYOUT
+   BUSINESS SERVICES - SPLIT INNOVATIVE LAYOUT
    ========================================== */
+:root {
+  --primary-bg: #152a46; /* Very dark blue/black */
+  --text-color: #3c3737; /* Bright white text for better visibility */
+  --accent-cyan: #00F0FF; /* Bright neon accent */
+  --accent-blue: #034078; /* Mid-tone blue */
+  --border-color: #29384d; /* Dark, subtle border */
+  --card-bg: #08101a; /* Slightly lighter than main bg for cards */
+}
+
 .business-services-section {
-  padding: 100px 40px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: rgba(10, 17, 40, 0.92);
-  background-blend-mode: overlay;
+  padding: 100px 8%; 
+  background-color: var(--primary-bg);
   overflow: hidden;
-  color: var(--white);
+  color: var(--text-color);
   position: relative;
   min-height: 100vh;
 }
 
-/* 3D Background Effect */
+/* 3D Background Effect (Updated for dark theme) */
 .business-services-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(18, 130, 162, 0.1) 0%,
-    rgba(3, 64, 120, 0.1) 50%,
-    rgba(0, 31, 84, 0.1) 100%
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(3, 64, 120, 0.1) 0%,
+    rgba(0, 0, 0, 0) 60%
   );
   z-index: 0;
   animation: bgPulse 10s ease-in-out infinite;
 }
 
 @keyframes bgPulse {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 /* ==========================================
-   MAIN CONTAINER - SPLIT LAYOUT
+   MAIN LAYOUT CONTAINER (SPLIT SCREEN)
    ========================================== */
 .services-container {
-  display: grid;
-  grid-template-columns: 35% 65%;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 0 auto;
+  display: flex;
+  gap: 40px;
   position: relative;
-  z-index: 1;
-  align-items: start;
+  z-index: 10;
 }
 
-/* ==========================================
-   LEFT SIDE - HEADER SECTION
-   ========================================== */
-.services-header {
-  position: sticky;
-  top: 120px;
-  padding-right: 40px;
-}
-
-.header-content {
-  background: rgba(18, 130, 162, 0.08);
-  padding: 50px 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(18, 130, 162, 0.2);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.header-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 30px 80px rgba(18, 130, 162, 0.3);
+/* ------------------------------------------
+   LEFT SIDE: HEADER & IMAGE SECTION
+   ------------------------------------------ */
+.services-header-container {
+  flex: 0 0 35%; /* Fixed width for left column */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: sticky; /* Sticky header/image */
+  top: 100px; /* Offset from top */
+  height: fit-content;
 }
 
 .services-header h2 {
-  font-size: 48px;
-  color: #ffffff;
-  margin-bottom: 40px;
+  font-size: 52px;
   font-weight: 800;
   line-height: 1.2;
-  letter-spacing: -1px;
-  animation: none;
-  opacity: 1;
-  transform: none;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
-.highlight-text {
-  background: linear-gradient(135deg, #1282a2, #0582ca);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  position: relative;
+.business-services-title {
+  color: #FFFFFF; /* White color for "Our Business Services" */
 }
 
-.highlight-text::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
+.section-description-header {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8); /* Light grey for descriptive text */
+  line-height: 1.7;
+  margin-bottom: 0; 
+}
+
+/* Professional Image Section */
+.image-meta-wrapper {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--accent-blue);
+  box-shadow: 0 0 30px rgba(0, 14, 15, 0.15);
+  transition: all 0.3s ease;
+  min-height: 770px; /* Added to extend the card downwards */
+  display: flex; /* Added to allow content to stretch */
+  flex-direction: column; /* Added to allow content to stretch */
+}
+
+.image-meta-wrapper img {
   width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #1282a2, #0582ca);
-  border-radius: 2px;
+  height: 100%; /* Changed to 100% to fill the parent container */
+  display: block;
+  object-fit: cover;
+  flex-grow: 1; /* Allow image to grow and fill space */
 }
 
-/* Header Meta Information */
-.header-meta {
-  margin-top: 30px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.image-meta-content {
+  padding: 20px;
+  text-align: center;
+  margin-top: auto; /* Push content to the bottom */
 }
 
 .meta-label {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--accent-cyan);
+  margin-bottom: 5px;
   letter-spacing: 2px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 .meta-value {
-  font-size: 24px;
-  color: #1282a2;
+  font-size: 28px;
   font-weight: 700;
+  color: var(--text-color);
   margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
 }
 
 .meta-time {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 400;
+  font-size: 16px;
+  color: rgba(32, 31, 31, 0.7); /* Lighter text for better visibility */
 }
 
-/* ==========================================
-   RIGHT SIDE - SERVICES GRID
-   ========================================== */
+/* ------------------------------------------
+   RIGHT SIDE: SERVICES GRID
+   ------------------------------------------ */
 .services-grid-container {
-  position: relative;
+  flex: 1; /* Takes up the remaining space */
 }
 
-.section-description {
+.section-description-grid {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 40px;
+  color: rgba(51, 51, 51, 0.8); /* Darker text for better visibility */
   line-height: 1.7;
-  animation: none;
-  opacity: 1;
-  transform: none;
-  max-width: 100%;
+  margin-bottom: 30px;
+  text-align: left;
 }
 
 .services-grid {
   display: grid;
+  /* 8 cards -> 2 columns, 4 rows */
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  gap: 30px;
 }
 
-/* ==========================================
-   SERVICE CARDS - MODERN DESIGN
-   ========================================== */
 .service-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
-  padding: 0;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(18, 130, 162, 0.1);
-  animation: none;
-  opacity: 1;
-  transform: none;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #1282a2, #0582ca);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.service-card:hover::before {
-  transform: scaleX(1);
+  /* Using Framer Motion's variants, so initial/animate states are in JSX */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 50px rgba(18, 130, 162, 0.25);
-  border-color: rgba(18, 130, 162, 0.3);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
 }
 
 .service-card-inner {
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  padding: 30px;
 }
 
 .service-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .service-icon {
-  width: 50px;
-  height: 50px;
-  margin: 0;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  transform: scale(1.1) rotate(5deg);
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+  filter: drop-shadow(0 0 5px var(--accent-cyan));
 }
 
 .service-card h3 {
   font-size: 22px;
-  color: #0a1128;
-  margin: 0;
   font-weight: 700;
-  line-height: 1.3;
+  color: var(--text-color);
 }
 
 .service-card p {
   font-size: 15px;
-  color: #4a5568;
-  line-height: 1.7;
-  margin: 0;
-  flex-grow: 1;
+  color: rgba(26, 25, 25, 0.7); /* Lighter text for better visibility */
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .service-arrow {
-  display: inline-block;
-  margin-top: 20px;
   font-size: 24px;
-  color: #1282a2;
-  font-weight: 700;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
+  color: var(--accent-cyan);
+  font-weight: 900;
+  text-align: right;
+  transition: transform 0.3s ease;
 }
 
 .service-card:hover .service-arrow {
-  opacity: 1;
-  transform: translateX(0);
+  transform: translateX(5px);
 }
 
 /* ==========================================
@@ -264,122 +213,47 @@
    ========================================== */
 @media (max-width: 1200px) {
   .services-container {
-    grid-template-columns: 40% 60%;
-    gap: 40px;
+    flex-direction: column; 
+    gap: 60px;
   }
-
-  .services-header h2 {
-    font-size: 40px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 992px) {
-  .business-services-section {
-    padding: 80px 30px;
-  }
-
-  .services-container {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  .services-header {
-    position: relative;
+  
+  .services-header-container {
+    position: relative; 
     top: 0;
-    padding-right: 0;
+    flex: 1;
+    max-width: 100%;
+    align-items: center;
   }
 
   .services-header h2 {
-    font-size: 38px;
     text-align: center;
+    font-size: 42px;
   }
-
-  .header-content {
-    padding: 40px 30px;
+  
+  .section-description-header, .section-description-grid {
+      max-width: 800px;
+      text-align: center;
   }
-
+  
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .business-services-section {
-    padding: 60px 20px;
+    padding: 60px 5%;
   }
 
   .services-header h2 {
-    font-size: 32px;
-  }
-
-  .header-content {
-    padding: 30px 25px;
-  }
-
-  .section-description {
-    font-size: 16px;
-  }
-
-  .service-card-inner {
-    padding: 25px;
-  }
-
-  .service-card h3 {
-    font-size: 20px;
-  }
-
-  .service-card p {
-    font-size: 14px;
-  }
-
-  .meta-value {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .services-header h2 {
-    font-size: 28px;
-  }
-
-  .service-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .service-card h3 {
-    font-size: 18px;
-  }
-
-  .service-card-inner {
-    padding: 20px;
-  }
-}
-
-/* ==========================================
-   ACCESSIBILITY & PERFORMANCE
-   ========================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .service-card {
-    border: 2px solid currentColor;
+    font-size: 36px;
   }
   
-  .highlight-text::after {
-    height: 4px;
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-card-inner {
+    padding: 25px;
   }
 }

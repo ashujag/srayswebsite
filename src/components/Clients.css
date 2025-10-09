@@ -1,100 +1,128 @@
+/* Scoped CSS Variables — only apply to this component */
 .clients-section {
-  padding: 80px 40px; /* Consistent padding */
-  background-color: var(--white); /* Use white background for this section */
+  --clients-bg: #001f3f;       /* Dark navy blue background */
+  --clients-card-bg: #012a63;  /* Slightly lighter card color */
+  --clients-hover-bg: #003a87; /* Card hover color */
+  --clients-text-white: #ffffff;
+  --clients-text-light: #d8e2f1;
+  --clients-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Section container */
+.clients-section {
+  padding: 100px 40px;
+  background-color: var(--clients-bg);
+  color: var(--clients-text-white);
   text-align: center;
   overflow: hidden;
+  isolation: isolate; /* Prevents global blending issues */
 }
 
 .clients-section h2 {
-  font-size: 42px; /* Consistent heading size */
-  color: var(--text-color);
-  margin-bottom: 15px; /* Adjusted margin */
+  font-size: 42px;
   font-weight: 700;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  animation-delay: 0.2s;
+  margin-bottom: 20px;
+  color: var(--clients-text-white);
 }
 
 .clients-section .section-description {
-  font-size: 19px; /* Consistent paragraph text size */
-  color: var(--secondary-color);
-  margin-bottom: 50px; /* Increased margin */
+  font-size: 18px;
+  color: var(--clients-text-light);
+  margin-bottom: 60px;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  animation-delay: 0.4s;
 }
 
+/* Clients grid */
 .clients-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax for slightly larger cards */
-  gap: 30px; /* Consistent gap */
-  max-width: 1200px; /* Increased max-width */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
+/* Client card */
 .client-card {
-  background-color: var(--background-color); /* Light background for cards */
-  padding: 30px; /* Increased padding */
-  border-radius: 12px; /* More rounded corners */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Refined shadow */
+  background-color: var(--clients-card-bg);
+  border: 1px solid var(--clients-border);
+  border-radius: 16px;
+  padding: 40px 20px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow to transition */
-  border: 1px solid var(--light-gray); /* Subtle border */
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInSlideUp 1s ease-out forwards;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-.client-card:nth-child(1) { animation-delay: 0.6s; }
-.client-card:nth-child(2) { animation-delay: 0.7s; }
-
-
 .client-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  background-color: var(--clients-hover-bg);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .client-card img {
-  max-width: 100%;
+  max-width: 150px;
   height: auto;
-  max-height: 90px; /* Slightly larger max-height */
-  object-fit: contain;
-  margin-bottom: 20px; /* Adjusted margin */
+  margin-bottom: 20px;
+  filter: brightness(95%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.client-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(100%);
 }
 
 .client-card p {
-  font-size: 17px; /* Slightly larger font size */
-  color: var(--text-color);
-  font-weight: 600; /* Bolder font weight */
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--clients-text-white);
+  margin-top: 10px;
 }
 
+/* Animations */
 @keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 992px) {
   .clients-section {
-    padding: 60px 20px;
+    padding: 70px 20px;
   }
 
   .clients-section h2 {
-    font-size: 34px;
+    font-size: 36px;
   }
 
   .clients-section .section-description {
     font-size: 17px;
+    margin-bottom: 40px;
   }
 
-  .clients-grid {
-    grid-template-columns: 1fr;
+  .client-card {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .clients-section h2 {
+    font-size: 30px;
+  }
+
+  .client-card img {
+    max-width: 120px;
+  }
+
+  .client-card p {
+    font-size: 16px;
   }
 }
