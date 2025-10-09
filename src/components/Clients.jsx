@@ -33,8 +33,8 @@ const Clients = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 40, rotate: -2 },
+    visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.6 } },
   };
 
   return (
@@ -46,6 +46,16 @@ const Clients = () => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
+      {/* Aurora Gradient Overlay */}
+      <div className="aurora-overlay"></div>
+
+      {/* Floating Particles */}
+      <div className="particles">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div key={i} className="particle"></div>
+        ))}
+      </div>
+
       <motion.h2 variants={itemVariants}>Our Valued Clients</motion.h2>
       <motion.p className="section-description" variants={itemVariants}>
         Trusted by leading educational institutions — empowering their digital
@@ -58,14 +68,12 @@ const Clients = () => {
             className="client-card"
             key={client.id}
             variants={itemVariants}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.25)",
-            }}
+            whileHover={{ scale: 1.08, rotateX: 5, rotateY: 5 }}
             whileTap={{ scale: 0.97 }}
           >
             <img src={client.image} alt={client.alt} />
             <p>{client.name}</p>
+            <button className="view-button">View More</button>
           </motion.div>
         ))}
       </motion.div>
