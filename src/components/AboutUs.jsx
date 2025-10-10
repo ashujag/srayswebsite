@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./AboutUs.css";
-import Stack from "./CardStack"; // Import the Stack component
-import image1 from "../assets/creative-designers-team-working-project.jpg";
-import image2 from "../assets/team-teamwork-support-collaboration-concept.jpg";
-import image3 from "../assets/successful-business-partners-having-meeting-discussing-new-business-project-ideas-office.jpg";
 
 const AboutUs = () => {
   const ref = useRef(null);
@@ -62,16 +58,7 @@ const AboutUs = () => {
         variants={itemVariants}
         whileHover={{ scale: 1.03 }}
       >
-        <Stack
-          cardsData={[
-            { id: 1, img: image1 },
-            { id: 2, img: image2 },
-            { id: 3, img: image3 },
-          ]}
-          cardDimensions={{ width: 250, height: 180 }} // Slightly smaller dimensions
-          sensitivity={100} // Adjust sensitivity as needed
-          randomRotation={true}
-        />
+        <img src="aboutus_bg.png" alt="About Us" />
       </motion.div>
     </motion.section>
   );

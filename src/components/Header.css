@@ -165,7 +165,7 @@
 }
 
 .logo-image {
-  height: 38px;
+  height: 75px;
   position: relative;
   z-index: 2;
   filter: drop-shadow(0 3px 12px rgba(255, 107, 107, 0.2))
@@ -174,7 +174,7 @@
 }
 
 .header.scrolled .logo-image {
-  height: 34px;
+  height: 75px;
 }
 
 .logo:hover .logo-image {
@@ -376,7 +376,7 @@
   }
 
   .logo-image {
-    height: 36px;
+    height: 48px;
   }
 }
 
@@ -397,7 +397,7 @@
   }
 
   .logo-image {
-    height: 32px;
+    height: 42px;
   }
 
   .header-particle {
@@ -428,7 +428,7 @@
   }
 
   .logo-image {
-    height: 30px;
+    height: 40px;
   }
 }
 
