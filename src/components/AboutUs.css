@@ -9,8 +9,8 @@
   background-repeat: no-repeat;
   min-height: 60vh;
   border-radius: 0;
-  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(16, 16, 16, 0.05);
+  overflow: hidden; /* Reverted to hidden for the main section */
   flex-wrap: wrap;
 }
 
@@ -23,14 +23,14 @@
 .aboutus-content h2 {
   font-size: 42px;
   font-weight: 700;
-  color: #2b2b2b;
+  color: #f0ebeb;
   margin-bottom: 20px;
   letter-spacing: 0.5px;
 }
 
 .aboutus-content p {
   font-size: 17px;
-  color: #4a4a4a;
+  color: #e9e5e5;
   line-height: 1.7;
   margin-bottom: 16px;
 }
@@ -58,19 +58,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.aboutus-image img {
+  position: relative; /* Ensure it's a positioning context for absolute children */
+  max-width: 480px; 
   width: 100%;
-  max-width: 480px;
-  border-radius: 20px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 300px; /* Give it a defined height to contain the absolute cards */
+  z-index: 1; /* Ensure it's above other elements if any */
+  overflow: visible; /* Allow cards to extend beyond the container if they rotate */
+  /* Removed margin-left properties to simplify positioning */
+  transform: translateX(0); /* Ensure no unintended transforms */
 }
 
-.aboutus-image img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+/* Remove specific img styling as it's replaced by the stack component */
+/* The img tag is no longer directly used, so this rule is not strictly necessary but good for cleanup */
+.aboutus-image img {
+  display: none; /* Hide the original image if it's still there */
 }
 
 /* 🌐 Responsive Design */
@@ -85,6 +86,7 @@
   .aboutus-content {
     max-width: 100%;
     margin-top: 30px;
+    margin-bottom: 50px; /* Add some margin for better spacing on smaller screens */
   }
 
   .aboutus-content h2 {
@@ -93,6 +95,11 @@
 
   .aboutus-content p {
     font-size: 16px;
+  }
+
+  .aboutus-image {
+    margin-left: 0; /* Ensure no left margin on smaller screens */
+    margin-bottom: 30px; /* Add bottom margin for spacing */
   }
 }
 
@@ -111,7 +118,7 @@
     font-size: 15px;
   }
 
-  .aboutus-image img {
-    max-width: 340px;
+  .aboutus-image {
+    height: 250px; /* Adjust height for smaller screens */
   }
 }

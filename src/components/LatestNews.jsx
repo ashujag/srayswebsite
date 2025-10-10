@@ -15,18 +15,18 @@ const newsItems = [
   {
     id: 2,
     author: "SRays",
-    title: "Building a Winning Business Plan",
+    title: "A business plan is a formal written document business goals",
     description:
-      "Learn how to structure your business plan and define clear goals to drive your organization forward successfully...",
+      "A business plan is a formal written document containing business goals. The methods on how these goals can be ....",
     date: "12 March, 2019",
     link: "#",
   },
   {
     id: 3,
     author: "SRays",
-    title: "The Power of Smart Business Operations",
+    title: "A business is the activity of making one's living",
     description:
-      "Business success starts with smart decisions and effective team management that align with your goals...",
+      "Business may offer to many differing activitie, such as the activity of buying or selling in trade. Business activity ....",
     date: "08 March, 2019",
     link: "#",
   },

@@ -2,12 +2,6 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./KnowledgeSpot.css";
 
-const knowledgeItems = [
-  "Building & Sustaining a Career in HR",
-  "Recruitment Trends & Challenges",
-  "Pep Talk Series on Talent Development & Retention Strategy",
-];
-
 const KnowledgeSpot = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -39,21 +33,17 @@ const KnowledgeSpot = () => {
         Explore our insights, HR strategies, and professional discussions that
         empower organizations and individuals to grow smarter.
       </motion.p>
-
-      <motion.div className="knowledge-list" variants={containerVariants}>
-        <ul>
-          {knowledgeItems.map((item, index) => (
-            <motion.li
-              key={index}
-              variants={itemVariants}
-              whileHover={{ x: 10 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="bullet-icon">📘</span> {item}
-            </motion.li>
-          ))}
-        </ul>
-      </motion.div>
+      <div className="video-container">
+        <div className="video-wrapper">
+          <iframe id="latest-youtube-vid-0" className="latestVideoEmbed" vnum="0" cid="UCJ01Gtpe2gRsy6sYtfKnk9g" width="600" height="340" frameborder="0" allowfullscreen="" src="https://youtube.com/embed/zqR8bw8bqdM?controls=0&autoplay=0"></iframe>
+        </div>
+        <div className="video-wrapper">
+          <iframe id="latest-youtube-vid-1" className="latestVideoEmbed" vnum="1" cid="UCJ01Gtpe2gRsy6sYtfKnk9g" width="600" height="340" frameborder="0" allowfullscreen="" src="https://youtube.com/embed/7s-uYaQcqq4?controls=0&autoplay=0"></iframe>
+        </div>
+        <div className="video-wrapper">
+          <iframe id="latest-youtube-vid-2" class="latestVideoEmbed" vnum="2" cid="UCJ01Gtpe2gRsy6sYtfKnk9g" width="600" height="340" frameborder="0" allowfullscreen="" src="https://youtube.com/embed/7CenIv7jl_k?controls=0&amp;autoplay=0"></iframe>
+        </div>
+      </div>
     </motion.section>
   );
 };

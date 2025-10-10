@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import RotatingText from './RotatingText';
 import './HeroSection.css';
 // UPDATE: Using the path mentioned in your initial request
 import prominentImg from '../assets/campaign-creators-gMsnXqILjp4-unsplash.jpg';
@@ -38,9 +39,9 @@ const HeroSection = () => {
     }
   }, []);
 
-  // Split heading into words (NO CHANGES TO TEXT)
-  const headingText = 'Design An Optimal Business Model to reach your IT Services';
-  const words = headingText.split(' ');
+  const staticHeadingPart = 'Design An Optimal Business Model to reach your ';
+  const rotatingTexts = ['IT Services', 'Designing', 'HR Solutions'];
+  const staticWords = staticHeadingPart.split(' ');
 
   return (
     <section id="hero-section" className="hero-section" ref={ref}>
@@ -51,14 +52,23 @@ const HeroSection = () => {
 
       <div className="hero-content observe-fade" ref={heroContentRef}>
         <h2 ref={headingRef}>
-          {words.map((word, index) => (
+          {staticWords.map((word, index) => (
             <span
               key={index}
               className="word-animate"
             >
-              {word}
+              {word}{' '}
             </span>
           ))}
+          <RotatingText
+            texts={rotatingTexts}
+            mainClassName="inline-flex"
+            splitLevelClassName="inline-flex"
+            elementLevelClassName="inline-block"
+            rotationInterval={2000}
+            staggerDuration={0.05}
+            animatePresenceInitial={true}
+          />
         </h2>
 
         <p className="paragraph-animate">

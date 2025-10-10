@@ -1,10 +1,23 @@
 .skills-expertise-section {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, #041024, #0b1e4a);
+  background-color: #f8f8f8; /* Set to Transition Color */
   overflow: hidden;
   padding: 120px 60px;
-  color: #fff;
+  color: #211f1f; /* Adjusted for readability against light background */
+  z-index: 1; /* Ensure content is above the gradient */
+}
+
+.skills-expertise-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Adjust height as needed for the fade effect */
+  background: linear-gradient(to bottom, rgba(145, 162, 180, 0) 0%, #101215 100%); /* Fade to the transition color */
+  z-index: 2; /* Ensure gradient is above the section content but below the next section */
+  pointer-events: none; /* Allow interaction with content below */
 }
 
 /* Cinematic parallax zoom background */
@@ -80,7 +93,8 @@
 .skills-title {
   font-size: 50px;
   font-weight: 800;
-  text-shadow: 0 0 20px rgba(0, 153, 255, 0.8);
+  color: #211f1f; /* Adjusted for readability */
+  text-shadow: none; /* Remove text shadow as it might not look good on light background */
   margin-bottom: 25px;
 }
 
@@ -99,7 +113,7 @@
 
 .section-description {
   font-size: 18px;
-  color: #d7e3ff;
+  color: #555; /* Adjusted for readability */
   line-height: 1.7;
   margin-bottom: 45px;
 }
@@ -129,12 +143,12 @@
 .skill-header h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #fff;
+  color: #211f1f; /* Adjusted for readability */
 }
 
 .skill-header span {
   font-size: 16px;
-  color: #bcd3ff;
+  color: #555; /* Adjusted for readability */
 }
 
 .progress-bar-container {
